@@ -64,11 +64,4 @@ class Stylist
   #   define_singleton_method(:clear) do
   #     DB.exec("TRUNCATE TABLE clients")
   #   end
-
-
-
-
-
-
-
 end

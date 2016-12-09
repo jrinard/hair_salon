@@ -48,7 +48,6 @@ describe(Stylist) do
     end
   end
 
-  #
   # describe("#clients") do
   #   it("returns an array of clients for that sylist") do
   #     test_stylist = Stylist.new({:name => "Quin", :id => nil})
@@ -90,13 +89,4 @@ describe(Stylist) do
     #   expect(Stylist.all()).to(eq([]))
     # end
   end
-
-
-
-
-
-
-
-
-
 end
