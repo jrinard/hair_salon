@@ -22,6 +22,9 @@ class Stylist
       @id = result.first().fetch("id").to_i()
     end
 
+    define_method(:==) do | another_stylist |
+      self.name().==(another_stylist.name()).&(self.id().==(another_stylist.id()))
+    end
 
 
 end
