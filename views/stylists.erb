@@ -1,0 +1,35 @@
+<h1>Your Current Stylists - stylists.erb</h1>
+
+<a href="/">Home</a><br>
+<a href="/stylists">View All Stylists</a><br>
+
+
+<hr>
+  <h3>Add a Stylist:</h3>
+<!-- Form to create more stylists -->
+<form action="/stylists" method="post">
+
+  <input id = 'name' name="name" type="text" placeholder="Stylist Name" class="form-control">
+  <br>
+  <button type="submit" class="btn btn-primary">Add Stylist</button>
+</form>
+
+
+<hr>
+<!-- View all your stylists -->
+<% if @stylists.any?() %>
+  <h3>Here are your Stylists:</h3>
+
+  <ul>
+    <% @stylists.each() do |stylist| %>
+      <li><a href="/stylists/<%= stylist.id()%>"><%= stylist.name() %></a> </li>
+    <% end %>
+  </ul>
+
+<% else %>
+
+    <p>There are no Stylists yet!</p>
+
+<% end %>
+
+<hr>
