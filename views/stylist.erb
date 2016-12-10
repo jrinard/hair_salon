@@ -1,5 +1,6 @@
 <h1>Specific Stylist <%= @stylist.name() %>- stylist.erb</h1>
 
+<div id="main" class="well">
 <a href="/">Home</a><br>
 <a href="/stylists">View All stylists</a><br>
 
@@ -19,7 +20,7 @@
 
 <hr>
 
-<h1><%= @stylist.name() %></h1>
+<h3><%= @stylist.name() %></h3>
 
 <a href="/stylists/<%= @stylist.id() %>/edit">Edit</a>
 
@@ -34,3 +35,5 @@
   <% else %>
     <p>There are no clients for this stylist!</p>
   <% end %>
+
+</div>
