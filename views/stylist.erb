@@ -4,6 +4,20 @@
 <a href="/stylists">View All stylists</a><br>
 
 <hr>
+<% if @stylist.clients().any?() %>
+
+  <ul>
+    <% @stylist.clients().each() do |client| %>
+    <li><a href="/stylists/<%= @stylist.id()%>/clients/<%= @stylist.id()%>"><%= client.name() %></a></li>
+  <% end %>
+  </ul>
+
+  <% else %>
+    <p>There are no clients for this stylist!</p>
+  <% end %>
+
+
+
 <h3>Add a Client to <%= @stylist.name() %> </h3>
 
 <form action="/clients" method="post">
@@ -14,28 +28,9 @@
   <button type="submit" class="btn btn-primary">Add Client</button>
 </form>
 
+
 <hr>
-
-
 
 <h1><%= @stylist.name() %></h1>
 
 <a href="/stylists/<%= @stylist.id() %>/edit">Edit <%= @stylist.name() %></a>
-
-
-<% if @stylist.clients().any?() %>
-
-  <ul>
-    <% @stylist.clients().each() do |client| %>
-      <li><%= client.name() %> </li>
-    <% end %>
-  </ul>
-
-  <% else %>
-    <p>There are no clients for this stylist!</p>
-  <% end %>
-<!--
-  <form action="/clear" method="post" class="pull-right">
-
-    <button type="submit" class="btn btn-danger">Delete All Tasks</button>
-  </form> -->
