@@ -11,16 +11,12 @@ get("/") do
   erb(:index)
 end
 
-#May not need later
-get("/stylists/new") do
-  erb(:stylist_form)
-end
-
 #Saves stylist form data
 post('/stylists') do
   name = params.fetch("name")
-  @stylist = Stylist.new({:name => name, :id => nil})
-  @stylist.save()
+  # id = params.fetch("id").to_i()
+  stylist = Stylist.new({:name => name, :id => nil})
+  stylist.save()
   @stylists = Stylist.all()
   erb(:stylists)
 end
@@ -67,7 +63,7 @@ post("/clients") do
   # id = params.fetch("id").to_i()            #Added
   stylist_id = params.fetch("stylist_id").to_i()
   @stylist = Stylist.find(stylist_id)
-  @client = Client.new({:name => name, :id => nil, :stylist_id => stylist_id})       #added id
+  @client = Client.new({ :id => nil, :name => name, :stylist_id => stylist_id})       #added id
   @client.save()
   erb(:stylist)
 end
