@@ -1,40 +1,25 @@
-<h1>Specific Stylist <%= @stylist.name() %>- stylist.erb</h1>
-
+<h1>Stylist - <%= @stylist.name() %></h1>
 <div id="main" class="well">
-<a href="/">Home</a><br>
-<a href="/stylists">View All stylists</a><br>
-
-<hr>
-
-
-<h3>Add a Client to <%= @stylist.name() %> </h3>
-
-<form action="/clients" method="post">
-  <input id="stylist_id" name="stylist_id" type="hidden" value="<%= @stylist.id() %>">
-
-  <input id="name" name="name" type="text" class="form-control" placeholder="New Client">
-  <br>
-  <button type="submit" class="btn btn-primary">Add Client</button>
-</form>
-
-
-<hr>
-
-<h3><%= @stylist.name() %></h3>
-
-<a href="/stylists/<%= @stylist.id() %>/edit">Edit</a>
-
-
-
-<% if @stylist.clients().any?() %>
-
-  <ul>
-    <% @stylist.clients().each() do |client| %>
-    <li><a href="/stylists/<%= @stylist.id()%>/clients/<%= client.id()%>">(<%= client.id %>)<%= client.name() %></a></li>
-  <% end %>
-  </ul>
-  <% else %>
-    <p>There are no clients for this stylist!</p>
-  <% end %>
-
+  <a href="/">Home</a><br>
+  <a href="/stylists">View All stylists</a><br>
+  <hr>
+  <h3>Add a Client to <%= @stylist.name() %> </h3>
+  <form action="/clients" method="post">
+    <input id="stylist_id" name="stylist_id" type="hidden" value="<%= @stylist.id() %>">
+    <input id="name" name="name" type="text" class="form-control" placeholder="New Client">
+    <br>
+    <button type="submit" class="btn btn-primary">Add Client</button>
+  </form>
+  <hr>
+  <h3><%= @stylist.name() %></h3>
+  <a href="/stylists/<%= @stylist.id() %>/edit">Edit</a>
+  <% if @stylist.clients().any?() %>
+    <ul>
+      <% @stylist.clients().each() do |client| %>
+      <li><a href="/stylists/<%= @stylist.id()%>/clients/<%= client.id()%>"><%= client.name() %></a></li>
+    <% end %>
+    </ul>
+    <% else %>
+      <p>There are no clients for this stylist!</p>
+    <% end %>
 </div>

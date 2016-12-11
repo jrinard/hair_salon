@@ -26,8 +26,8 @@ describe(Client) do
   it("lets you read the stylist ID out") do
     client = Client.new({:name => "Quin", :id => nil, :stylist_id => 1})
     expect(client.stylist_id()).to(eq(1))
-   end
- end
+    end
+  end
 
   describe("#==") do
     it("is the same client if it has the same name") do
@@ -37,6 +37,23 @@ describe(Client) do
     end
   end
 
+  #update a client
+  describe("#update") do
+    it("lets you update client in the database") do
+      client = Client.new({:name => "Quin", :id => nil, :stylist_id => 1})
+      client.save()
+      client.update({:name => 'Lillian'})
+      expect(client.name()).to(eq("Lillian"))
+    end
+  end
 
-
+  #delete a client
+  describe("#delete") do
+    it("lets you delete a client from the database") do
+      client = Stylist.new({:name => "Quin", :id => nil})
+      client.save()
+      client.delete()
+      expect(Client.all()).to(eq([]))
+    end
+  end
 end

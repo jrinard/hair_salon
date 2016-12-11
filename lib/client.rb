@@ -19,15 +19,18 @@ class Client
       clients
     end
 
+    #save client
     define_method(:save) do
       result = DB.exec("INSERT INTO clients (name, stylist_id) VALUES ('#{@name}', #{@stylist_id}) RETURNING id;")
       @id = result.first().fetch("id").to_i()
     end
 
+    #overides ==
     define_method(:==) do | another_client |
       self.name().==(another_client.name()).&(self.id().==(another_client.id()))
     end
 
+    #finds client by id
     define_singleton_method(:find) do |id|
       found_client = nil
       Client.all().each() do |client|
@@ -39,13 +42,13 @@ class Client
     end
 
     #update client
-      define_method(:update) do |attributes|
-        @name = attributes.fetch(:name)
-        DB.exec("UPDATE clients SET name = '#{@name}' WHERE id = #{@id};")
-      end
+    define_method(:update) do |attributes|
+      @name = attributes.fetch(:name)
+      DB.exec("UPDATE clients SET name = '#{@name}' WHERE id = #{@id};")
+    end
 
     #delete client
-      define_method(:delete) do
-        DB.exec("DELETE FROM clients WHERE id = #{self.id()};")
-      end
+    define_method(:delete) do
+      DB.exec("DELETE FROM clients WHERE id = #{self.id()};")
+    end
 end

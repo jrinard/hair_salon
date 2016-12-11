@@ -7,7 +7,7 @@ describe('View Stylist Page', {:type => :feature}) do
   it('allows a user to click a link to see the stylists') do
     visit('/')
     click_link('View All Stylists')
-    expect(page).to have_content('Add a Stylist')
+    expect(page).to have_content('Add a Hair Stylist')
   end
 end
 
@@ -47,16 +47,6 @@ describe('edit stylist', {:type => :feature}) do
     test_stylist.save()
     visit("/stylists/#{test_stylist.id()}")
     click_link("Edit")
-    expect(page).to have_content("Jon")
-  end
-end
-
-describe('edit client', {:type => :feature}) do
-  it('allows a user to edit a client') do
-    test_stylist = Stylist.new({:id => 1, :name => 'Jon'})
-    test_stylist.save()
-    test_client = Client.new({:id => 1, :name => 'Sue'})
-    test_client.save()
-    test_client.update({:stylist_id => test_stylist.id})
+    expect(page).to have_content("Rename")
   end
 end

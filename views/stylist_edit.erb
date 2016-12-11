@@ -1,11 +1,8 @@
-<h1>Update stylist: <%=@stylist.name() %></h1>
-
+<h1>Update Stylist - <%=@stylist.name() %></h1>
 <div id="main" class="well">
 <a href="/">Home</a><br>
 <a href="/stylists">View All Lists</a><br>
-
 <hr>
-
 <!-- Update Form -->
 <form action="/stylists/<%= @stylist.id() %>" method="post">
   <input name="_method" type="hidden" value="patch">
@@ -14,12 +11,10 @@
   <br>
   <button type="submit" class="btn btn-primary">Update</button>
 </form>
-
 <hr>
 <!-- Delete list -->
 <form action="/stylists/<%= @stylist.id() %>" method="post">
   <input name="_method" type="hidden" value="delete">
-
   <button type="submit" class="btn btn-danger">Delete Stylist</button>
 </form>
 </div>
