@@ -20,7 +20,6 @@ describe('adding a new stylist', {:type => :feature}) do
   end
 end
 
-
 describe('seeing details for a single stylist', {:type => :feature}) do
   it('allows a user to click a list to see the tasks and details for it') do
     test_stylist = Stylist.new({:id => 1, :name => 'Jon'})
@@ -49,5 +48,15 @@ describe('edit stylist', {:type => :feature}) do
     visit("/stylists/#{test_stylist.id()}")
     click_link("Edit")
     expect(page).to have_content("Jon")
+  end
+end
+
+describe('edit client', {:type => :feature}) do
+  it('allows a user to edit a client') do
+    test_stylist = Stylist.new({:id => 1, :name => 'Jon'})
+    test_stylist.save()
+    test_client = Client.new({:id => 1, :name => 'Sue'})
+    test_client.save()
+    test_client.update({:stylist_id => test_stylist.id})
   end
 end

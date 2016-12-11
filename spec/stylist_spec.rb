@@ -7,7 +7,6 @@ describe(Stylist) do
     end
   end
 
-
   describe("#name") do
     it("tells you the name") do
       stylist = Stylist.new({:name => "Quin", :id => nil})
@@ -47,7 +46,7 @@ describe(Stylist) do
       test_stylist.save()
     end
   end
-
+  #
   # describe("#clients") do
   #   it("returns an array of clients for that sylist") do
   #     test_stylist = Stylist.new({:name => "Quin", :id => nil})

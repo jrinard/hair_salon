@@ -25,11 +25,12 @@
 <a href="/stylists/<%= @stylist.id() %>/edit">Edit</a>
 
 
+
 <% if @stylist.clients().any?() %>
 
   <ul>
     <% @stylist.clients().each() do |client| %>
-    <li><a href="/stylists/<%= @stylist.id()%>/clients/<%= @stylist.id()%>"><%= client.name() %></a></li>
+    <li><a href="/stylists/<%= @stylist.id()%>/clients/<%= client.id()%>">(<%= client.id %>)<%= client.name() %></a></li>
   <% end %>
   </ul>
   <% else %>

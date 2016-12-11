@@ -41,18 +41,11 @@ class Client
     #update client
       define_method(:update) do |attributes|
         @name = attributes.fetch(:name)
-        @id = self.id().to_i()
         DB.exec("UPDATE clients SET name = '#{@name}' WHERE id = #{@id};")
       end
 
     #delete client
       define_method(:delete) do
         DB.exec("DELETE FROM clients WHERE id = #{self.id()};")
-      #   DB.exec("DELETE FROM clients WHERE client_id = #{self.id()};")
       end
-
-  # #delete entire table
-  #   define_singleton_method(:clear) do
-  #     DB.exec("TRUNCATE TABLE clients")
-  #   end
 end

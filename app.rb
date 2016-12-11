@@ -11,17 +11,16 @@ get("/") do
   erb(:index)
 end
 
-#Saves stylist form data
+#saves stylist form data
 post('/stylists') do
   name = params.fetch("name")
-  # id = params.fetch("id").to_i()
   stylist = Stylist.new({:name => name, :id => nil})
   stylist.save()
   @stylists = Stylist.all()
   erb(:stylists)
 end
 
-#View Stylists
+#view stylists
 get('/stylists') do
   @stylists = Stylist.all()
   erb(:stylists)
@@ -33,13 +32,13 @@ get("/stylists/:id") do
   erb(:stylist)
 end
 
-#Goes to Edit Page
+#goes to edit page
 get("/stylists/:id/edit") do
   @stylist = Stylist.find(params.fetch("id").to_i())
   erb(:stylist_edit)
 end
 
-#Patch to Update Stylist
+#patch to update stylist
 patch("/stylists/:id") do
   name = params.fetch("name")
   @stylist = Stylist.find(params.fetch("id").to_i())
@@ -55,42 +54,37 @@ delete("/stylists/:id") do
   erb(:stylists)
 end
 
-
-#saves client to Database
+#saves client to database
 post("/clients") do
   name = params.fetch("name")
   stylist_id = params.fetch("stylist_id").to_i()
   @stylist = Stylist.find(stylist_id)
-  @client = Client.new({ :id => nil, :name => name, :stylist_id => stylist_id})       #added id
+  @client = Client.new({ :id => nil, :name => name, :stylist_id => stylist_id})
   @client.save()
   erb(:stylist)
 end
 
 
-#edit client info
-get("/stylists/:id/clients/:id") do
+#edit client info. Note the different ids
+get("/stylists/:stylist_id/clients/:id") do
   @client = Client.find(params.fetch("id").to_i())
+  @stylist = Stylist.find(params.fetch("stylist_id").to_i())
   erb(:client_info)
 end
 
-#update Clients
-patch("/stylists/:id/clients/:id") do
+#update clients
+patch("/stylists/:sid/clients/:id") do
   name = params.fetch("name")
   @stylists = Stylist.all()
-  @stylist = Stylist.find(params.fetch("id").to_i())
+  @stylist = Stylist.find(params.fetch("sid").to_i())
   @client = Client.find(params.fetch("id").to_i())
   @client.update({:name => name})
-  erb(:client_info)
+  redirect "/stylists/#{params.fetch('sid')}"
 end
-
 
 #delete client
 delete("/stylists/:id/clients/:id") do
   @client = Client.find(params.fetch("id").to_i())
   @client.delete()
-  @client = Client.new(:name => "empty")
-  stylist_id = @client.stylist_id
-  @stylists = Stylist.all
-  @clients = Client.all
-  erb(:index)
+  redirect "/"
 end
